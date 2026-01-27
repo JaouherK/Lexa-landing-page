@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexa - AI-Powered Translation Platform</title>
+    <meta name="description" content="Translate smarter with Lexa. Enterprise-grade AI translation for 100+ languages with context-aware accuracy and real-time collaboration.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lexa-bg': '#050505',
+                        'lexa-bg-gradient': '#0a0a0a',
+                        'lexa-card': '#0c0c0c',
+                        'lexa-card-hover': '#141414',
+                        'lexa-accent': '#ffffff',
+                        'lexa-accent-muted': '#a1a1aa',
+                        'lexa-text': '#71717a',
+                        'lexa-text-light': '#a1a1aa',
+                        'lexa-border': 'rgba(255, 255, 255, 0.08)',
+                        'lexa-border-light': 'rgba(255, 255, 255, 0.12)',
+                        'lexa-glass': 'rgba(255, 255, 255, 0.02)',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'serif': ['Instrument Serif', 'serif'],
+                    },
+                    borderRadius: {
+                        'card': '20px',
+                        'btn': '12px',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-dark': 'linear-gradient(180deg, #0a0a0a 0%, #050505 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-lexa-bg text-lexa-text font-inter antialiased" style="background: linear-gradient(180deg, #0a0a0a 0%, #050505 50%, #000000 100%);">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-lexa-border bg-lexa-bg/80 backdrop-blur-xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-lexa-accent rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-white">Lexa</span>
+                </a>
+                
+                <!-- Nav Links -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#features" class="text-lexa-text hover:text-white transition-colors relative reveal-line">Features</a>
+                    <a href="#pricing" class="text-lexa-text hover:text-white transition-colors relative reveal-line">Pricing</a>
+                    <a href="#faq" class="text-lexa-text hover:text-white transition-colors relative reveal-line">FAQ</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hidden sm:block text-lexa-text hover:text-white transition-colors">Sign In</a>
+                    <a href="#" class="btn-primary bg-black hover:bg-zinc-900 text-white border border-white/20 px-4 py-2 rounded-btn text-sm font-medium transition-all">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden min-h-screen flex items-center">
+        <!-- Full Width Hero Video Container -->
+        <div class="hero-video-section hero-animate hero-animate-image absolute inset-0 w-full h-full">
+            
+            <!-- Background Video -->
+            <div class="absolute inset-0 z-0">
+                <video 
+                    class="w-full h-full object-cover"
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                >
+                    <source src="media/hero-bg.mp4" type="video/mp4">
+                </video>
+                <!-- Dark Video Overlay with Multiply Blend -->
+                <div class="absolute inset-0 bg-black/60 mix-blend-multiply"></div>
+                <div class="absolute inset-0 bg-zinc-900/50"></div>
+            </div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 py-32">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Badge -->
+                <div class="hero-badge hero-animate hero-animate-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
+                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                    <span class="text-sm text-white/80">AI-Powered Translation</span>
+                </div>
+                
+                <!-- Headline -->
+                <h1 class="hero-title hero-animate hero-animate-title text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+                    Translate Smarter.<br>
+                    <span class="font-serif italic font-normal text-white/70">Grow Faster.</span>
+                </h1>
+                
+                <!-- Subheadline -->
+                <p class="hero-subtitle hero-animate hero-animate-subtitle text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10">
+                    Enterprise-grade AI translation for 100+ languages. Context-aware accuracy meets real-time collaboration for teams that move fast.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="hero-buttons hero-animate hero-animate-buttons flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#" class="btn-primary w-full sm:w-auto bg-black hover:bg-zinc-900 text-white border border-white/20 px-6 py-3 rounded-btn text-sm font-medium transition-all text-center">
+                        Start Free Trial
+                    </a>
+                    <a href="#" class="btn-secondary w-full sm:w-auto bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white px-6 py-3 rounded-btn text-sm font-medium transition-all flex items-center justify-center gap-2 group">
+                        <svg class="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        See How It Works
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Stats Cards -->
+        <div class="hero-floating-card hero-floating-left absolute left-8 lg:left-16 top-1/2 -translate-y-1/2 bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-xl hidden lg:block z-20" data-parallax="0.05">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div class="text-white font-medium"><span data-counter="99.2" data-suffix="%" data-decimals="1">0</span> Accuracy</div>
+                    <div class="text-xs text-white/50">Neural engine v3</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-floating-card hero-floating-right absolute right-8 lg:right-16 bottom-32 bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-xl hidden lg:block z-20" data-parallax="-0.05">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div class="text-white font-medium"><span data-counter="3" data-suffix="x">0</span> Faster</div>
+                    <div class="text-xs text-white/50">Than traditional tools</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By Section - Marquee -->
+    <section class="py-16 px-6 border-y border-lexa-border overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-center text-sm text-lexa-text/60 mb-8" data-animate>Trusted by innovative teams worldwide</p>
+            
+            <!-- Marquee -->
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <div class="flex items-center gap-16">
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Stripe</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Notion</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Figma</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Linear</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Vercel</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Raycast</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Loom</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Slack</div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="flex items-center gap-16">
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Stripe</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Notion</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Figma</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Linear</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Vercel</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Raycast</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Loom</div>
+                        <div class="text-2xl font-bold text-lexa-text/40 hover:text-lexa-text/70 transition-colors whitespace-nowrap">Slack</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6" data-animate>
+                    <span class="text-sm text-zinc-400">Features</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" data-animate data-animate-delay="1">
+                    Why Choose <span class="font-serif italic font-normal text-zinc-400">Lexa</span>
+                </h2>
+                <p class="text-zinc-500 max-w-2xl mx-auto" data-animate data-animate-delay="2">
+                    Built for modern teams who need accurate, fast, and collaborative translation workflows.
+                </p>
+            </div>
+            
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div class="group glow-card bg-white/[0.02] border border-white/10 rounded-card p-8 transition-all duration-300" data-animate data-animate-delay="1">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors group-hover:scale-110 duration-300">
+                        <svg class="w-7 h-7 text-white icon-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Neural Translation Engine</h3>
+                    <p class="text-zinc-500">Powered by state-of-the-art neural networks trained on billions of translation pairs for unmatched accuracy.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="group glow-card bg-white/[0.02] border border-white/10 rounded-card p-8 transition-all duration-300" data-animate data-animate-delay="2">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors group-hover:scale-110 duration-300">
+                        <svg class="w-7 h-7 text-white icon-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Context-Aware Accuracy</h3>
+                    <p class="text-zinc-500">Our AI understands context, tone, and industry terminology to deliver translations that actually make sense.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="group glow-card bg-white/[0.02] border border-white/10 rounded-card p-8 transition-all duration-300" data-animate data-animate-delay="3">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors group-hover:scale-110 duration-300">
+                        <svg class="w-7 h-7 text-white icon-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Real-time Collaboration</h3>
+                    <p class="text-zinc-500">Work together with your team in real-time. Review, edit, and approve translations without the back-and-forth.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="group glow-card bg-white/[0.02] border border-white/10 rounded-card p-8 transition-all duration-300" data-animate data-animate-delay="4">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors group-hover:scale-110 duration-300">
+                        <svg class="w-7 h-7 text-white icon-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">100+ Languages</h3>
+                    <p class="text-zinc-500">From major world languages to regional dialects, Lexa supports over 100 languages and counting.</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="group glow-card bg-white/[0.02] border border-white/10 rounded-card p-8 transition-all duration-300" data-animate data-animate-delay="5">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors group-hover:scale-110 duration-300">
+                        <svg class="w-7 h-7 text-white icon-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Developer-First API</h3>
+                    <p class="text-zinc-500">Integrate Lexa into your workflow with our RESTful API. Full documentation and SDKs for all major languages.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="group glow-card bg-white/[0.02] border border-white/10 rounded-card p-8 transition-all duration-300" data-animate data-animate-delay="6">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors group-hover:scale-110 duration-300">
+                        <svg class="w-7 h-7 text-white icon-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Enterprise Security</h3>
+                    <p class="text-zinc-500">SOC 2 compliant with end-to-end encryption. Your data never leaves your control.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits/Stats Section -->
+    <section class="py-24 px-6 relative overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 bg-gradient-to-b from-lexa-card/50 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto relative">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Content -->
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6" data-animate>
+                        <span class="text-sm text-zinc-400">Why Us</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" data-animate data-animate-delay="1">
+                        Translation that <span class="font-serif italic font-normal text-zinc-400">scales</span> with you
+                    </h2>
+                    <p class="text-lexa-text text-lg mb-8" data-animate data-animate-delay="2">
+                        Whether you're a startup localizing your first app or an enterprise managing millions of words across dozens of markets, Lexa grows with your needs.
+                    </p>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6" data-animate data-animate-delay="3">
+                        <div class="text-center sm:text-left">
+                            <div class="text-3xl sm:text-4xl font-bold text-white mb-1">
+                                <span data-counter="99.2" data-suffix="%" data-decimals="1">0%</span>
+                            </div>
+                            <div class="text-sm text-lexa-text">Accuracy Rate</div>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <div class="text-3xl sm:text-4xl font-bold text-white mb-1">
+                                <span data-counter="100" data-suffix="+">0</span>
+                            </div>
+                            <div class="text-sm text-lexa-text">Languages</div>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <div class="text-3xl sm:text-4xl font-bold text-white mb-1">
+                                <span data-counter="3" data-suffix="x">0</span>
+                            </div>
+                            <div class="text-sm text-lexa-text">Faster</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visual -->
+                <div class="relative" data-animate="slide-right">
+                    <div class="bg-lexa-card border border-lexa-border rounded-card p-6 card-hover">
+                        <!-- Language Cards -->
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 bg-lexa-bg rounded-xl border border-lexa-border hover:border-lexa-accent/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-lexa-accent/20 flex items-center justify-center text-lg">🇺🇸</div>
+                                <div class="flex-1">
+                                    <div class="text-white font-medium">English</div>
+                                    <div class="text-xs text-lexa-text">Source language</div>
+                                </div>
+                                <div class="text-green-400 text-sm font-medium">Active</div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 p-4 bg-lexa-bg rounded-xl border border-lexa-border hover:border-lexa-accent/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-lexa-accent/20 flex items-center justify-center text-lg">🇪🇸</div>
+                                <div class="flex-1">
+                                    <div class="text-white font-medium">Spanish</div>
+                                    <div class="text-xs text-lexa-text">1,234 strings translated</div>
+                                </div>
+                                <div class="text-lexa-accent text-sm font-medium">100%</div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 p-4 bg-lexa-bg rounded-xl border border-lexa-border hover:border-lexa-accent/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-lexa-accent/20 flex items-center justify-center text-lg">🇫🇷</div>
+                                <div class="flex-1">
+                                    <div class="text-white font-medium">French</div>
+                                    <div class="text-xs text-lexa-text">1,198 strings translated</div>
+                                </div>
+                                <div class="text-yellow-400 text-sm font-medium">97%</div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 p-4 bg-lexa-bg rounded-xl border border-lexa-border hover:border-lexa-accent/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-lexa-accent/20 flex items-center justify-center text-lg">🇩🇪</div>
+                                <div class="flex-1">
+                                    <div class="text-white font-medium">German</div>
+                                    <div class="text-xs text-lexa-text">1,156 strings translated</div>
+                                </div>
+                                <div class="text-yellow-400 text-sm font-medium">94%</div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 p-4 bg-lexa-bg rounded-xl border border-lexa-border hover:border-lexa-accent/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-lexa-accent/20 flex items-center justify-center text-lg">🇯🇵</div>
+                                <div class="flex-1">
+                                    <div class="text-white font-medium">Japanese</div>
+                                    <div class="text-xs text-lexa-text">1,089 strings translated</div>
+                                </div>
+                                <div class="text-yellow-400 text-sm font-medium">88%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative glow -->
+                    <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6" data-animate>
+                    <span class="text-sm text-zinc-400">Testimonials</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" data-animate data-animate-delay="1">
+                    Loved by teams <span class="font-serif italic font-normal text-zinc-400">worldwide</span>
+                </h2>
+                <p class="text-zinc-500 max-w-2xl mx-auto" data-animate data-animate-delay="2">
+                    See what our customers have to say about transforming their localization workflow.
+                </p>
+            </div>
+            
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-lexa-card border border-lexa-border rounded-card p-8" data-animate data-animate-delay="1">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-lexa-text mb-6">"Lexa cut our localization time by 70%. The context-aware translations are incredibly accurate - we barely need to make manual edits anymore."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-lexa-accent to-purple-500"></div>
+                        <div>
+                            <div class="text-white font-medium">Sarah Chen</div>
+                            <div class="text-sm text-lexa-text">Head of Product, TechFlow</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-lexa-card border border-lexa-border rounded-card p-8" data-animate data-animate-delay="2">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-lexa-text mb-6">"The API integration was seamless. We connected Lexa to our CI/CD pipeline and now translations happen automatically with every deploy."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-500"></div>
+                        <div>
+                            <div class="text-white font-medium">Marcus Rodriguez</div>
+                            <div class="text-sm text-lexa-text">CTO, DevScale</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-lexa-card border border-lexa-border rounded-card p-8" data-animate data-animate-delay="3">
+                    <div class="flex items-center gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-lexa-text mb-6">"We went from supporting 3 languages to 12 in just two months. Lexa's batch translation feature is a game-changer for our global expansion."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-pink-500"></div>
+                        <div>
+                            <div class="text-white font-medium">Emma Larsson</div>
+                            <div class="text-sm text-lexa-text">Localization Lead, NordicApp</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section class="py-24 px-6 border-y border-lexa-border">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6" data-animate>
+                    <span class="text-sm text-zinc-400">Integrations</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" data-animate data-animate-delay="1">
+                    Works with your <span class="font-serif italic font-normal text-zinc-400">stack</span>
+                </h2>
+                <p class="text-zinc-500 max-w-2xl mx-auto" data-animate data-animate-delay="2">
+                    Connect Lexa to the tools you already use. No workflow disruption required.
+                </p>
+            </div>
+            
+            <!-- Integrations Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="1">
+                    <div class="integration-icon text-3xl mb-2">🔗</div>
+                    <div class="text-white font-medium">GitHub</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="1">
+                    <div class="integration-icon text-3xl mb-2">💬</div>
+                    <div class="text-white font-medium">Slack</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="2">
+                    <div class="integration-icon text-3xl mb-2">🎨</div>
+                    <div class="text-white font-medium">Figma</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="2">
+                    <div class="integration-icon text-3xl mb-2">📝</div>
+                    <div class="text-white font-medium">Notion</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="3">
+                    <div class="integration-icon text-3xl mb-2">⚡</div>
+                    <div class="text-white font-medium">Zapier</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="3">
+                    <div class="integration-icon text-3xl mb-2">🚀</div>
+                    <div class="text-white font-medium">Vercel</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="4">
+                    <div class="integration-icon text-3xl mb-2">📊</div>
+                    <div class="text-white font-medium">Jira</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="4">
+                    <div class="integration-icon text-3xl mb-2">☁️</div>
+                    <div class="text-white font-medium">AWS</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="5">
+                    <div class="integration-icon text-3xl mb-2">🔷</div>
+                    <div class="text-white font-medium">Azure</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="5">
+                    <div class="integration-icon text-3xl mb-2">🐳</div>
+                    <div class="text-white font-medium">Docker</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="6">
+                    <div class="integration-icon text-3xl mb-2">📦</div>
+                    <div class="text-white font-medium">npm</div>
+                </div>
+                <div class="integration-card bg-lexa-card border border-lexa-border rounded-card p-6 flex flex-col items-center justify-center group" data-animate data-animate-delay="6">
+                    <div class="integration-icon text-3xl mb-2">✨</div>
+                    <div class="text-white font-medium">More...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6" data-animate>
+                    <span class="text-sm text-zinc-400">Pricing</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" data-animate data-animate-delay="1">
+                    Simple, transparent <span class="font-serif italic font-normal text-zinc-400">pricing</span>
+                </h2>
+                <p class="text-zinc-500 max-w-2xl mx-auto mb-8" data-animate data-animate-delay="2">
+                    Start free, upgrade when you're ready. No hidden fees, no surprises.
+                </p>
+                
+                <!-- Billing Toggle -->
+                <div class="inline-flex items-center gap-4 bg-white/5 border border-white/10 rounded-full p-1" data-animate data-animate-delay="3">
+                    <button class="pricing-toggle active px-6 py-2 rounded-full text-sm font-medium transition-all" data-plan="monthly">
+                        Monthly
+                    </button>
+                    <button class="pricing-toggle px-6 py-2 rounded-full text-sm font-medium transition-all" data-plan="yearly">
+                        Yearly <span class="text-emerald-400 text-xs ml-1">Save 20%</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Pricing Cards -->
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Starter -->
+                <div class="pricing-card bg-white/[0.02] border border-white/10 rounded-card p-8" data-animate data-animate-delay="1">
+                    <div class="text-zinc-400 font-medium mb-2">Starter</div>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-4xl font-bold text-white price-monthly">$29</span>
+                        <span class="text-4xl font-bold text-white price-yearly hidden">$23</span>
+                        <span class="text-lexa-text">/month</span>
+                    </div>
+                    <p class="text-lexa-text text-sm mb-6">Perfect for small teams and side projects.</p>
+                    
+                    <a href="#" class="btn-secondary block w-full border border-white/20 hover:border-white/40 hover:bg-white/5 text-white text-center py-2 rounded-btn text-sm font-medium transition-all mb-8">
+                        Start Free Trial
+                    </a>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            50,000 words/month
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            10 languages
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            3 team members
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            API access
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Email support
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Pro (Featured) -->
+                <div class="pricing-card featured bg-white/[0.02] border-2 border-white/30 rounded-card p-8 relative" data-animate data-animate-delay="2">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-black text-xs font-medium px-3 py-1 rounded-full">
+                        Most Popular
+                    </div>
+                    <div class="text-zinc-400 font-medium mb-2">Pro</div>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-4xl font-bold text-white price-monthly">$79</span>
+                        <span class="text-4xl font-bold text-white price-yearly hidden">$63</span>
+                        <span class="text-lexa-text">/month</span>
+                    </div>
+                    <p class="text-lexa-text text-sm mb-6">For growing teams with serious localization needs.</p>
+                    
+                    <a href="#" class="btn-primary block w-full bg-black hover:bg-zinc-900 text-white border border-white/20 text-center py-2 rounded-btn text-sm font-medium transition-all mb-8">
+                        Start Free Trial
+                    </a>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            500,000 words/month
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            50 languages
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            10 team members
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Advanced API + webhooks
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Priority support
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Translation memory
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Enterprise -->
+                <div class="pricing-card bg-white/[0.02] border border-white/10 rounded-card p-8" data-animate data-animate-delay="3">
+                    <div class="text-zinc-400 font-medium mb-2">Enterprise</div>
+                    <div class="flex items-baseline gap-1 mb-4">
+                        <span class="text-4xl font-bold text-white">Custom</span>
+                    </div>
+                    <p class="text-lexa-text text-sm mb-6">For large organizations with custom requirements.</p>
+                    
+                    <a href="#" class="btn-secondary block w-full border border-white/20 hover:border-white/40 hover:bg-white/5 text-white text-center py-2 rounded-btn text-sm font-medium transition-all mb-8">
+                        Contact Sales
+                    </a>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Unlimited words
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            100+ languages
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Unlimited team members
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Custom integrations
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Dedicated account manager
+                        </li>
+                        <li class="flex items-center gap-3 text-lexa-text">
+                            <svg class="w-5 h-5 text-lexa-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            SLA guarantee
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-6">
+        <div class="max-w-3xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6" data-animate>
+                    <span class="text-sm text-zinc-400">FAQ</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" data-animate data-animate-delay="1">
+                    Frequently asked <span class="font-serif italic font-normal text-zinc-400">questions</span>
+                </h2>
+                <p class="text-zinc-500" data-animate data-animate-delay="2">
+                    Everything you need to know about Lexa.
+                </p>
+            </div>
+            
+            <!-- FAQ Accordion -->
+            <div class="space-y-4" id="faq-accordion">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white/[0.02] border border-white/10 rounded-card overflow-hidden" data-animate data-animate-delay="1">
+                    <button class="faq-question w-full flex items-center justify-between p-6 text-left">
+                        <span class="text-white font-medium">How accurate are Lexa's translations?</span>
+                        <svg class="faq-icon w-5 h-5 text-zinc-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6" style="max-height: 0; padding-bottom: 0;">
+                        <p class="text-zinc-500">Lexa achieves 99.2% accuracy on average across all supported languages. Our neural translation engine is continuously trained on industry-specific datasets and learns from user corrections to improve over time. For critical translations, we recommend using our human review feature.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white/[0.02] border border-white/10 rounded-card overflow-hidden" data-animate data-animate-delay="2">
+                    <button class="faq-question w-full flex items-center justify-between p-6 text-left">
+                        <span class="text-white font-medium">What file formats does Lexa support?</span>
+                        <svg class="faq-icon w-5 h-5 text-zinc-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6" style="max-height: 0; padding-bottom: 0;">
+                        <p class="text-zinc-500">Lexa supports all major localization formats including JSON, YAML, XML, PO/POT, XLIFF, Android XML, iOS Strings, ARB (Flutter), and CSV. We also support importing from Figma designs directly and exporting to any format you need.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white/[0.02] border border-white/10 rounded-card overflow-hidden" data-animate data-animate-delay="3">
+                    <button class="faq-question w-full flex items-center justify-between p-6 text-left">
+                        <span class="text-white font-medium">Can I try Lexa before committing?</span>
+                        <svg class="faq-icon w-5 h-5 text-zinc-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6" style="max-height: 0; padding-bottom: 0;">
+                        <p class="text-zinc-500">Absolutely! Every plan starts with a 14-day free trial with full access to all features. No credit card required. You can also use our free tier indefinitely which includes 5,000 words per month and 3 languages.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white/[0.02] border border-white/10 rounded-card overflow-hidden" data-animate data-animate-delay="4">
+                    <button class="faq-question w-full flex items-center justify-between p-6 text-left">
+                        <span class="text-white font-medium">How does the API integration work?</span>
+                        <svg class="faq-icon w-5 h-5 text-zinc-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6" style="max-height: 0; padding-bottom: 0;">
+                        <p class="text-zinc-500">Our REST API allows you to integrate translations directly into your development workflow. We provide SDKs for JavaScript, Python, Ruby, Go, and Java. You can also use our CLI tool to sync translations with your codebase or set up webhooks to automate your localization pipeline.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-white/[0.02] border border-white/10 rounded-card overflow-hidden" data-animate data-animate-delay="5">
+                    <button class="faq-question w-full flex items-center justify-between p-6 text-left">
+                        <span class="text-white font-medium">Is my data secure with Lexa?</span>
+                        <svg class="faq-icon w-5 h-5 text-zinc-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6" style="max-height: 0; padding-bottom: 0;">
+                        <p class="text-zinc-500">Security is our top priority. Lexa is SOC 2 Type II certified and GDPR compliant. All data is encrypted at rest and in transit using AES-256 encryption. We never use your content to train our models without explicit consent, and you can request complete data deletion at any time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-gradient-to-br from-zinc-900/50 to-black border border-white/10 rounded-card p-12 text-center relative overflow-hidden" data-animate="scale">
+                <!-- Background glow -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-zinc-700/20 rounded-full blur-[100px] pointer-events-none bg-glow"></div>
+                
+                <div class="relative">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                        Ready to translate <span class="font-serif italic font-normal text-zinc-400">smarter</span>?
+                    </h2>
+                    <p class="text-zinc-500 text-lg mb-8 max-w-xl mx-auto">
+                        Join thousands of teams who've transformed their localization workflow with Lexa.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#" class="btn-primary w-full sm:w-auto bg-black hover:bg-zinc-900 text-white border border-white/20 px-6 py-3 rounded-btn text-sm font-medium transition-all">
+                            Start Your Free Trial
+                        </a>
+                        <a href="#" class="btn-secondary w-full sm:w-auto border border-white/20 hover:border-white/40 hover:bg-white/5 text-white px-6 py-3 rounded-btn text-sm font-medium transition-all">
+                            Talk to Sales
+                        </a>
+                    </div>
+                    <p class="text-sm text-zinc-600 mt-6">No credit card required • 14-day free trial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-6 border-t border-lexa-border">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="lg:col-span-2">
+                    <a href="#" class="flex items-center gap-2 mb-4 group">
+                        <div class="w-8 h-8 bg-lexa-accent rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold text-white">Lexa</span>
+                    </a>
+                    <p class="text-lexa-text mb-6 max-w-sm">
+                        AI-powered translation platform for modern teams. Translate smarter, not harder.
+                    </p>
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 bg-lexa-card border border-lexa-border rounded-lg flex items-center justify-center text-lexa-text hover:text-white hover:border-lexa-accent/50 hover:bg-lexa-accent/10 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-lexa-card border border-lexa-border rounded-lg flex items-center justify-center text-lexa-text hover:text-white hover:border-lexa-accent/50 hover:bg-lexa-accent/10 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-lexa-card border border-lexa-border rounded-lg flex items-center justify-center text-lexa-text hover:text-white hover:border-lexa-accent/50 hover:bg-lexa-accent/10 transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Product</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Integrations</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">API Docs</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Changelog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Press</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Security</a></li>
+                        <li><a href="#" class="text-lexa-text hover:text-white transition-colors">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom -->
+            <div class="pt-8 border-t border-lexa-border flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-sm text-lexa-text/60">© 2026 Lexa. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-sm text-lexa-text/60 hover:text-lexa-text transition-colors">Status</a>
+                    <a href="#" class="text-sm text-lexa-text/60 hover:text-lexa-text transition-colors">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

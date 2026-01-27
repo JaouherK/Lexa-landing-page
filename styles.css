@@ -1,0 +1,1012 @@
+/* Custom Styles for Lexa Landing Page */
+/* Matching Landio Framer Template Style */
+
+/* ============================================
+   HERO ANIMATIONS - Landio Style
+   Using spring physics and custom easings
+   ============================================ */
+
+/* Custom cubic-bezier easings from Landio */
+:root {
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-landio-1: cubic-bezier(0.72, 0.21, 0.36, 1.01);
+    --ease-landio-2: cubic-bezier(0.53, 0.27, 0.4, 1);
+    --ease-landio-3: cubic-bezier(0.67, 0.33, 0.23, 1.02);
+}
+
+/* Hero animate base - initial hidden state */
+.hero-animate {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+/* Badge animation - fade + slide up with spring */
+.hero-animate-badge {
+    position: relative;
+    transform: translateY(30px);
+    animation: heroFadeSlideUp 1s var(--ease-spring) forwards;
+    animation-delay: 0.2s;
+}
+
+/* Title animation - scale up + fade with custom easing */
+.hero-animate-title {
+    transform: scale(0.7) translateY(20px);
+    animation: heroScaleUp 1.6s var(--ease-landio-1) forwards;
+    animation-delay: 0s;
+}
+
+/* Subtitle animation - fade + slide with longer delay */
+.hero-animate-subtitle {
+    transform: translateY(40px);
+    animation: heroFadeSlideUp 1.2s var(--ease-landio-2) forwards;
+    animation-delay: 0.3s;
+}
+
+/* Buttons animation - slide up with spring bounce */
+.hero-animate-buttons {
+    transform: translateY(60px);
+    animation: heroSlideUpBounce 0.8s var(--ease-spring-bounce) forwards;
+    animation-delay: 0.5s;
+}
+
+/* Hero video background animation - fade in */
+.hero-animate-image {
+    animation: heroVideoFadeIn 2s var(--ease-landio-2) forwards;
+    animation-delay: 0s;
+}
+
+@keyframes heroVideoFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Background glow animation */
+.hero-glow {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: heroGlowPulse 2.5s var(--ease-out-expo) forwards;
+    animation-delay: 0s;
+}
+
+/* Keyframes */
+@keyframes heroFadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroScaleUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) translateY(20px);
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes heroSlideUpBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+    80% {
+        transform: translateY(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroImageReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(60px);
+    }
+    30% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes heroGlowPulse {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateX(-50%);
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateX(-50%);
+    }
+}
+
+/* Floating card animations - Landio style */
+.hero-floating-card {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.hero-floating-left {
+    opacity: 0;
+    transform: translateX(-40px) translateY(-50%);
+    animation: heroFloatLeftFull 1s var(--ease-spring-bounce) forwards;
+    animation-delay: 0.8s;
+}
+
+.hero-floating-right {
+    opacity: 0;
+    transform: translateX(40px);
+    animation: heroFloatRightFull 1s var(--ease-spring-bounce) forwards;
+    animation-delay: 1s;
+}
+
+@keyframes heroFloatLeftFull {
+    0% {
+        opacity: 0;
+        transform: translateX(-40px) translateY(-50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(-50%);
+    }
+}
+
+@keyframes heroFloatRightFull {
+    0% {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Continuous float animation for cards after entrance */
+.hero-floating-card {
+    animation-fill-mode: forwards;
+}
+
+/* Hero button hover enhancements */
+.hero-buttons .btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-buttons .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.hero-buttons .btn-primary:hover::before {
+    transform: translateX(100%);
+}
+
+/* Title text shimmer effect after load */
+.hero-title {
+    background: linear-gradient(
+        120deg,
+        #ffffff 0%,
+        #ffffff 40%,
+        rgba(255, 255, 255, 0.8) 50%,
+        #ffffff 60%,
+        #ffffff 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: heroScaleUp 1.6s var(--ease-landio-1) forwards,
+               titleShimmer 3s ease-in-out 1.8s;
+}
+
+@keyframes titleShimmer {
+    0% {
+        background-position: 100% center;
+    }
+    100% {
+        background-position: -100% center;
+    }
+}
+
+/* Badge pulse ring animation */
+.hero-badge::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    border: 1px solid rgba(16, 185, 129, 0);
+    animation: badgePulseRing 2s ease-out infinite 1.5s;
+}
+
+@keyframes badgePulseRing {
+    0% {
+        border-color: rgba(16, 185, 129, 0.4);
+        transform: scale(1);
+    }
+    100% {
+        border-color: rgba(16, 185, 129, 0);
+        transform: scale(1.15);
+    }
+}
+
+/* ============================================
+   HERO VIDEO SECTION - Full Width Landio Style
+   ============================================ */
+
+.hero-video-section {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+.hero-video-section video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.6) brightness(0.8);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2a2a2a;
+}
+
+/* Selection */
+::selection {
+    background: rgba(59, 130, 246, 0.4);
+    color: #fff;
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+
+/* Initial state for animated elements */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-animate].animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays */
+[data-animate-delay="1"] { transition-delay: 0.1s; }
+[data-animate-delay="2"] { transition-delay: 0.2s; }
+[data-animate-delay="3"] { transition-delay: 0.3s; }
+[data-animate-delay="4"] { transition-delay: 0.4s; }
+[data-animate-delay="5"] { transition-delay: 0.5s; }
+[data-animate-delay="6"] { transition-delay: 0.6s; }
+
+/* Scale animation variant */
+[data-animate="scale"] {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+[data-animate="scale"].animate-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Fade only variant */
+[data-animate="fade"] {
+    opacity: 0;
+    transform: none;
+}
+
+[data-animate="fade"].animate-in {
+    opacity: 1;
+}
+
+/* Slide from left */
+[data-animate="slide-left"] {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+[data-animate="slide-left"].animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Slide from right */
+[data-animate="slide-right"] {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+[data-animate="slide-right"].animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ============================================
+   MARQUEE / INFINITE SCROLL
+   ============================================ */
+
+.marquee-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, #000000, transparent);
+}
+
+.marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, #000000, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 30s linear infinite;
+    width: fit-content;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Reverse direction */
+.marquee-track.reverse {
+    animation-direction: reverse;
+}
+
+/* ============================================
+   CARD HOVER EFFECTS
+   ============================================ */
+
+.card-hover {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease,
+                background-color 0.4s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(255, 255, 255, 0.03);
+    background-color: #111111 !important;
+}
+
+/* Glow card on hover */
+.glow-card {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.glow-card:hover::before {
+    opacity: 1;
+}
+
+.glow-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    background-color: #0f0f0f !important;
+}
+
+/* ============================================
+   BUTTON ANIMATIONS
+   ============================================ */
+
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::before {
+    opacity: 1;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   ANIMATED COUNTERS
+   ============================================ */
+
+.counter {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ============================================
+   FLOATING ANIMATION
+   ============================================ */
+
+.float {
+    animation: float 4s ease-in-out infinite;
+}
+
+.float-delayed {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: -2s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* ============================================
+   PULSE GLOW
+   ============================================ */
+
+.pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* ============================================
+   GRADIENT ANIMATIONS
+   ============================================ */
+
+.gradient-animate {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Animated border gradient */
+.border-gradient-animate {
+    position: relative;
+}
+
+.border-gradient-animate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #ffffff, #a1a1aa, #ffffff);
+    background-size: 200% 200%;
+    animation: gradientShift 4s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* ============================================
+   PRICING TOGGLE
+   ============================================ */
+
+.pricing-toggle {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.pricing-toggle.active {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.pricing-toggle:not(.active) {
+    color: #a1a1aa;
+}
+
+.pricing-toggle:not(.active):hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   FAQ ACCORDION
+   ============================================ */
+
+.faq-item {
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.faq-item.active {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+/* ============================================
+   ICON ANIMATIONS
+   ============================================ */
+
+.icon-hover {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.group:hover .icon-hover {
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-menu a {
+    font-size: 1.5rem;
+    color: #a1a1aa;
+    transition: color 0.2s, transform 0.3s;
+}
+
+.mobile-menu a:hover {
+    color: #fff;
+    transform: translateX(10px);
+}
+
+/* ============================================
+   TESTIMONIAL CARDS
+   ============================================ */
+
+.testimonial-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: #0f0f0f !important;
+}
+
+/* ============================================
+   INTEGRATION CARDS
+   ============================================ */
+
+.integration-card {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.integration-card:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.integration-card:hover .integration-icon {
+    transform: scale(1.2);
+}
+
+.integration-icon {
+    transition: transform 0.3s ease;
+}
+
+/* ============================================
+   PRICING CARDS
+   ============================================ */
+
+.pricing-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    background-color: #0f0f0f !important;
+}
+
+.pricing-card.featured {
+    transform: scale(1.02);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.02) translateY(-8px);
+}
+
+/* ============================================
+   HERO ANIMATIONS
+   ============================================ */
+
+.hero-badge {
+    animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-title {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    opacity: 0;
+}
+
+.hero-subtitle {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    opacity: 0;
+}
+
+.hero-buttons {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    opacity: 0;
+}
+
+.hero-image {
+    animation: fadeInScale 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ============================================
+   BACKGROUND GLOW ANIMATION
+   ============================================ */
+
+.bg-glow {
+    animation: bgGlow 8s ease-in-out infinite;
+}
+
+@keyframes bgGlow {
+    0%, 100% {
+        opacity: 0.2;
+        transform: translate(-50%, 0) scale(1);
+    }
+    50% {
+        opacity: 0.4;
+        transform: translate(-50%, 0) scale(1.1);
+    }
+}
+
+/* ============================================
+   REVEAL LINE ANIMATION
+   ============================================ */
+
+.reveal-line {
+    position: relative;
+    overflow: hidden;
+}
+
+.reveal-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-line:hover::after {
+    transform: translateX(100%);
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2.25rem !important;
+    }
+    
+    h2 {
+        font-size: 1.875rem !important;
+    }
+    
+    .marquee-track {
+        animation-duration: 20s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================
+   SHIMMER EFFECT
+   ============================================ */
+
+.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* ============================================
+   TEXT GRADIENT
+   ============================================ */
+
+.text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 50%, #ffffff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textGradient 3s linear infinite;
+}
+
+@keyframes textGradient {
+    0%, 100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
+}
+
+/* ============================================
+   ADDITIONAL LANDIO-STYLE EFFECTS
+   ============================================ */
+
+/* Subtle inner glow for cards */
+.inner-glow {
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Border highlight on top */
+.border-top-highlight {
+    position: relative;
+}
+
+.border-top-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+/* Noise texture overlay (optional) */
+.noise-overlay {
+    position: relative;
+}
+
+.noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    pointer-events: none;
+}
