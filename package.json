@@ -1,0 +1,19 @@
+{
+  "name": "lexa-landing-page",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "build": "tailwindcss -i src/input.css -o dist/tailwind.css --minify",
+    "watch": "tailwindcss -i src/input.css -o dist/tailwind.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18"
+  }
+}
